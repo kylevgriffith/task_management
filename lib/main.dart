@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'screens/home_screen.dart';
 
-import 'contants.dart';
+import 'helpers/contants.dart';
+import 'screens/home_screen.dart';
 
 void main() {
   runApp(const MyApp());
