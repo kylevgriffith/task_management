@@ -29,7 +29,32 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
+      builder: (context, widget) {
+        return ScrollConfiguration(
+          behavior: const ScrollBehaviorModified(),
+          child: widget!,
+        );
+      },
       home: const HomeScreen(),
     );
+  }
+}
+
+class ScrollBehaviorModified extends ScrollBehavior {
+  const ScrollBehaviorModified();
+  @override
+  ScrollPhysics getScrollPhysics(BuildContext context) {
+    switch (getPlatform(context)) {
+      case TargetPlatform.iOS:
+      case TargetPlatform.macOS:
+      case TargetPlatform.android:
+        return const BouncingScrollPhysics(
+          parent: AlwaysScrollableScrollPhysics(),
+        );
+      case TargetPlatform.fuchsia:
+      case TargetPlatform.linux:
+      case TargetPlatform.windows:
+        return const ClampingScrollPhysics();
+    }
   }
 }
