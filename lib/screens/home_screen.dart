@@ -45,11 +45,9 @@ class HomeScreen extends StatelessWidget {
           (index) => Padding(
             padding: const EdgeInsets.only(left: 10),
             child: TaskCard(
-              title: tasksCardList[index].title,
-              date: tasksCardList[index].date,
-              progress: tasksCardList[index].progress,
-              color: tasksCardList[index].color,
-            ),
+                title: tasksCardList[index].title,
+                date: tasksCardList[index].date,
+                progress: tasksCardList[index].progress),
           ),
         ),
       ),

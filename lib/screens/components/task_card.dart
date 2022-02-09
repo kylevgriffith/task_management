@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../helpers/contants.dart';
 
 import '../../helpers/extesnsion.dart';
 
@@ -7,13 +8,11 @@ class TaskCard extends StatelessWidget {
       {required this.title,
       required this.date,
       required this.progress,
-      required this.color,
       Key? key})
       : super(key: key);
   final String title;
   final int progress;
   final DateTime date;
-  final Color color;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +22,7 @@ class TaskCard extends StatelessWidget {
       height: size.height * 0.25,
       width: size.width * 0.4,
       decoration: BoxDecoration(
-        color: color,
+        color: accentColor.withOpacity(progressColor),
         borderRadius: BorderRadius.circular(30),
       ),
       child: Padding(
@@ -88,4 +87,6 @@ class TaskCard extends StatelessWidget {
       ),
     );
   }
+
+  double get progressColor => progress < 40 ? 0.35 : progress / 100;
 }
