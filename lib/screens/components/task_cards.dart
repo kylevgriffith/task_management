@@ -1,28 +1,37 @@
 import 'package:flutter/material.dart';
+
 import '../../helpers/contants.dart';
-
 import '../../helpers/extesnsion.dart';
+import '../../models/task.dart';
 
-class TaskCard extends StatelessWidget {
-  const TaskCard(
-      {required this.title,
-      required this.date,
-      required this.progress,
-      Key? key})
-      : super(key: key);
-  final String title;
-  final int progress;
-  final DateTime date;
+class TaskCards extends StatelessWidget {
+  const TaskCards({required this.tasks, Key? key}) : super(key: key);
 
+  final List<Task> tasks;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        children: List.generate(
+          tasksList.length,
+          (index) => Padding(
+            padding: const EdgeInsets.only(right: 15),
+            child: taskCard(size, tasks[index]),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Container taskCard(Size size, Task task) {
     return Container(
       height: size.height * 0.25,
       width: size.width * 0.4,
       decoration: BoxDecoration(
-        color: accentColor.withOpacity(progressColor),
+        color: cardColor(task.progress),
         borderRadius: BorderRadius.circular(30),
       ),
       child: Padding(
@@ -31,16 +40,16 @@ class TaskCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            leftTaskTime(),
-            taskTitle(),
-            taskProgress(),
+            leftTaskTime(task.date),
+            taskTitle(task.title),
+            taskProgress(task.progress),
           ],
         ),
       ),
     );
   }
 
-  Widget taskProgress() {
+  Widget taskProgress(int progress) {
     return Column(
       children: [
         Row(
@@ -68,7 +77,7 @@ class TaskCard extends StatelessWidget {
     );
   }
 
-  Align taskTitle() {
+  Align taskTitle(String title) {
     return Align(
       alignment: Alignment.center,
       child: Text(
@@ -78,7 +87,7 @@ class TaskCard extends StatelessWidget {
     );
   }
 
-  Align leftTaskTime() {
+  Align leftTaskTime(DateTime date) {
     return Align(
       alignment: Alignment.topRight,
       child: Text(
@@ -88,5 +97,10 @@ class TaskCard extends StatelessWidget {
     );
   }
 
-  double get progressColor => progress < 40 ? 0.35 : progress / 100;
+  Color cardColor(int progress) {
+    double opacity = progressColor(progress);
+    return accentColor.withOpacity(opacity);
+  }
+
+  double progressColor(int progress) => progress < 40 ? 0.35 : progress / 100;
 }

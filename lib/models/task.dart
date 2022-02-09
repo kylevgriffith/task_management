@@ -1,5 +1,3 @@
-
-
 class Task {
   final String title;
   final String? description;
@@ -14,7 +12,7 @@ class Task {
   });
 }
 
-List<Task> tasksCardList = [
+List<Task> tasksList = [
   Task(
       title: 'User interface design',
       date: DateTime.now().add(const Duration(days: 1)),

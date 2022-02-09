@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import '../models/task.dart';
-import 'components/task_card.dart';
 
 import '../helpers/contants.dart';
+import '../models/task.dart';
+import 'components/task_cards.dart';
+import 'components/task_lists.dart';
 import 'components/time_frequency.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -15,39 +16,25 @@ class HomeScreen extends StatelessWidget {
       child: Scaffold(
         body: Padding(
           padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 15),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              topScreenIcons(),
-              const SizedBox(height: 40),
-              userListTile(),
-              const SizedBox(height: 40),
-              const Text(
-                'My tasks',
-                style: kboldTextStyle,
-              ),
-              const SizedBox(height: 10),
-              const TimeFrequency(),
-              taskCards(),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  SingleChildScrollView taskCards() {
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: Row(
-        children: List.generate(
-          tasksCardList.length,
-          (index) => Padding(
-            padding: const EdgeInsets.only(left: 10),
-            child: TaskCard(
-                title: tasksCardList[index].title,
-                date: tasksCardList[index].date,
-                progress: tasksCardList[index].progress),
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                topScreenIcons(),
+                const SizedBox(height: 40),
+                userListTile(),
+                const SizedBox(height: 40),
+                const Text(
+                  'My tasks',
+                  style: kboldTextStyle,
+                ),
+                const SizedBox(height: 10),
+                const TimeFrequency(),
+                TaskCards(tasks: tasksList),
+                const SizedBox(height: 20),
+                TaskLists(tasks: tasksList),
+              ],
+            ),
           ),
         ),
       ),

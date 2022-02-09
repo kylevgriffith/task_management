@@ -1,8 +1,8 @@
 import 'contants.dart';
 
 extension DateTimeExtension on DateTime {
-  String get date {
-    return "$day/$monthName/$year";
+  String get expandedDate {
+    return "$day $monthName $year";
   }
 
   String get monthName {
