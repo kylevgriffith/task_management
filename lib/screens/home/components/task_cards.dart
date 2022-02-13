@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../helpers/contants.dart';
-import '../../helpers/extesnsion.dart';
-import '../../models/task.dart';
+import '../../../helpers/contants.dart';
+import '../../../helpers/extesnsion.dart';
+import '../../../models/task.dart';
 
 class TaskCards extends StatelessWidget {
   const TaskCards({required this.tasks, Key? key}) : super(key: key);

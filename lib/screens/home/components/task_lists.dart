@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../helpers/extesnsion.dart';
-import '../../models/task.dart';
-
-import '../../helpers/contants.dart';
+import '../../../helpers/extesnsion.dart';
+import '../../../models/task.dart';
+import '../../../helpers/contants.dart';
 
 class TaskLists extends StatelessWidget {
   const TaskLists({required this.tasks, Key? key}) : super(key: key);

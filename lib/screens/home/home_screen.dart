@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../helpers/contants.dart';
-import '../models/task.dart';
-import 'components/task_cards.dart';
-import 'components/task_lists.dart';
-import 'components/time_frequency.dart';
+import '../../helpers/contants.dart';
+import '../../models/task.dart';
+import '../home/components/task_cards.dart';
+import '../home/components/task_lists.dart';
+import '../home/components/time_frequency.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -21,9 +21,9 @@ class HomeScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 topScreenIcons(),
-                const SizedBox(height: 40),
+                const SizedBox(height: 30),
                 userListTile(),
-                const SizedBox(height: 40),
+                const SizedBox(height: 30),
                 const Text(
                   'My tasks',
                   style: kboldTextStyle,
