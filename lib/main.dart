@@ -1,33 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'helpers/contants.dart';
 import 'screens/home/home_screen.dart';
 
 void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
+  runApp(
+    GetMaterialApp(
+      home: const HomeScreen(),
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        scaffoldBackgroundColor: backgroundColor,
+        scaffoldBackgroundColor: bgColor,
         colorScheme: const ColorScheme.light().copyWith(
           brightness: Brightness.light,
           primary: primaryColor,
           secondary: accentColor,
         ),
-        fontFamily: 'Poppins',
-        textTheme: const TextTheme(
-          bodyText1: TextStyle(
-            color: textColor,
-          ),
-        ),
+        fontFamily: 'Cairo',
       ),
       builder: (context, widget) {
         return ScrollConfiguration(
@@ -35,9 +24,8 @@ class MyApp extends StatelessWidget {
           child: widget!,
         );
       },
-      home: const HomeScreen(),
-    );
-  }
+    ),
+  );
 }
 
 class ScrollBehaviorModified extends ScrollBehavior {

@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-
-import '../../helpers/contants.dart';
-import '../../models/task.dart';
-import '../home/components/task_cards.dart';
-import '../home/components/task_lists.dart';
-import '../home/components/time_frequency.dart';
+import 'package:get/get.dart';
+import 'package:task_management/helpers/contants.dart';
+import 'package:task_management/helpers/extensions/date_extension.dart';
+import 'package:task_management/screens/home/components/date_timeline.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -15,88 +12,67 @@ class HomeScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         body: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 15),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                topScreenIcons(),
-                const SizedBox(height: 30),
-                userListTile(),
-                const SizedBox(height: 30),
-                const Text(
-                  'My tasks',
-                  style: kboldTextStyle,
-                ),
-                const SizedBox(height: 10),
-                const TimeFrequency(),
-                TaskCards(tasks: tasksList),
-                const SizedBox(height: 20),
-                TaskLists(tasks: tasksList),
-              ],
-            ),
+          padding: const EdgeInsets.all(10.0),
+          child: Column(
+            children: [
+              userInfoWidgets(),
+              verticalSpace(),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    DateTime.now().justDate,
+                    style: kDefaultTextStyleBold,
+                  ),
+                  Container(
+                    width: Get.width * 0.4,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(kDefaultRadius),
+                      color: Colors.white,
+                    ),
+                    child: ListTile(
+                      leading: const Icon(
+                        Icons.calendar_today,
+                        color: primaryColor,
+                      ),
+                      title: Text(
+                        DateTime.now().longMonthName,
+                        style: kDefaultTextStyle,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              verticalSpace(),
+              DateTimeline(),
+            ],
           ),
         ),
       ),
     );
   }
 
-  Row topScreenIcons() {
+  SizedBox verticalSpace() => SizedBox(height: Get.height * 0.04);
+
+  Row userInfoWidgets() {
     return Row(
       children: [
-        SvgPicture.asset(
-          'assets/icons/Menu.svg',
-          semanticsLabel: 'Menu',
-          height: 40,
+        const CircleAvatar(
+          backgroundImage: AssetImage('assets/images/profile.jpg'),
+          radius: 30,
+        ),
+        SizedBox(width: Get.height * 0.02),
+        const Text(
+          'Hello, Alice Jordan!',
+          style: kDefaultTextStyle,
         ),
         const Spacer(),
-        SvgPicture.asset(
-          'assets/icons/Search.svg',
-          semanticsLabel: 'Search',
-          height: 30,
-        ),
-        const SizedBox(
-          width: 20,
-        ),
-        SvgPicture.asset(
-          'assets/icons/Filter.svg',
-          semanticsLabel: 'Filter',
-          height: 35,
+        IconButton(
+          icon: const Icon(Icons.notifications_outlined),
+          iconSize: 30,
+          onPressed: () {},
         ),
       ],
-    );
-  }
-
-  ListTile userListTile() {
-    return ListTile(
-      leading: const CircleAvatar(
-        radius: 30,
-        backgroundColor: accentColor,
-        child: Icon(
-          Icons.person,
-          color: Colors.white,
-        ),
-      ),
-      title: RichText(
-        text: const TextSpan(
-          children: [
-            TextSpan(
-              text: 'Hi, ',
-              style: kdefaultTextStyle,
-            ),
-            TextSpan(
-              text: 'John Doe',
-              style: kboldTextStyle,
-            ),
-          ],
-        ),
-      ),
-      subtitle: const Text(
-        'Welcome back',
-        style: TextStyle(
-          fontSize: 12,
-        ),
-      ),
     );
   }
 }

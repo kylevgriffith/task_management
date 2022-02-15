@@ -1,23 +1,22 @@
 import 'package:flutter/material.dart';
 
-const Color primaryColor = Color(0xFF8164E3);
+const Color primaryColor = Color(0xFF008EF8);
+const Color accentColor = Color(0xFFFDAC3D);
+const Color bgColor = Color(0xFFE9F2F8);
 
-const Color accentColor = Color(0xFF37338B);
-const Color thirdColor = Color(0xFFC3CFE0);
-const Color textColor = Color(0xFF232223);
-const Color backgroundColor = Color(0xFFFDFDFE);
+const double kDefaultRadius = 40.0;
 
-const TextStyle kdefaultTextStyle = TextStyle(
-  fontSize: 20,
-  color: textColor,
+const TextStyle kDefaultTextStyle = TextStyle(
+  fontSize: 18.0,
+  fontWeight: FontWeight.w600,
 );
-const TextStyle kboldTextStyle = TextStyle(
-  fontSize: 20,
-  color: textColor,
+
+const TextStyle kDefaultTextStyleBold = TextStyle(
+  fontSize: 20.0,
   fontWeight: FontWeight.bold,
 );
 
-const List<String> months = [
+const List<String> longMonthNames = [
   'January',
   'February',
   'March',
@@ -30,4 +29,19 @@ const List<String> months = [
   'October',
   'November',
   'December'
+];
+
+const List<String> shortMonthNames = [
+  'Jan',
+  'Feb',
+  'Mar',
+  'Apr',
+  'May',
+  'Jun',
+  'Jul',
+  'Aug',
+  'Sep',
+  'Oct',
+  'Nov',
+  'Dec'
 ];

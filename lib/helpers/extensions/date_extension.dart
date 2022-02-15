@@ -1,12 +1,16 @@
-import 'contants.dart';
+import 'package:intl/intl.dart';
 
 extension DateTimeExtension on DateTime {
-  String get expandedDate {
-    return "$day $monthName $year";
+  String get justDate {
+    return "$shortMonthName $day, $year";
   }
 
-  String get monthName {
-    return months[month - 1];
+  String get shortMonthName {
+    return DateFormat.MMM().format(this);
+  }
+
+  String get longMonthName {
+    return DateFormat.MMMM().format(this);
   }
 
   String get leftTime {
