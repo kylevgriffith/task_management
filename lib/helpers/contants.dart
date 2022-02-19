@@ -20,3 +20,5 @@ const TextStyle kSmallDateTextStyle = TextStyle(
   fontSize: 15.0,
   fontWeight: FontWeight.bold,
 );
+
+const Duration kDefaultDuration = Duration(milliseconds: 800);

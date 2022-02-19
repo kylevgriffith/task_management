@@ -20,13 +20,18 @@ class DateTimelineBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      child: Container(
-        width: Get.width * 0.15,
-        margin: const EdgeInsets.only(right: 15.0),
-        decoration: boxDecoration(),
-        child: Padding(
-          padding: const EdgeInsets.all(10),
-          child: boxDateText(),
+      child: AnimatedSwitcher(
+        duration: kDefaultDuration,
+        switchInCurve: Curves.easeInOut,
+        child: Container(
+          key: ValueKey(isSelected),
+          width: Get.width * 0.16,
+          margin: const EdgeInsets.only(right: 15.0),
+          decoration: boxDecoration(),
+          child: Padding(
+            padding: const EdgeInsets.all(10),
+            child: boxDateText(),
+          ),
         ),
       ),
       onTap: () {
