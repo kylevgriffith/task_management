@@ -16,7 +16,6 @@ void main() {
           primary: primaryColor,
           secondary: accentColor,
         ),
-        fontFamily: 'Cairo',
       ),
       builder: (context, widget) {
         return ScrollConfiguration(
