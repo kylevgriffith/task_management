@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:task_management/helpers/contants.dart';
-import 'package:task_management/helpers/extensions/date_extension.dart';
-import 'package:task_management/screens/home/components/date_timeline.dart';
+
+import '../../helpers/contants.dart';
+import 'components/date_widgets.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -17,34 +17,7 @@ class HomeScreen extends StatelessWidget {
             children: [
               userInfoWidgets(),
               verticalSpace(),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    DateTime.now().justDate,
-                    style: kDefaultTextStyleBold,
-                  ),
-                  Container(
-                    width: Get.width * 0.4,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(kDefaultRadius),
-                      color: Colors.white,
-                    ),
-                    child: ListTile(
-                      leading: const Icon(
-                        Icons.calendar_today,
-                        color: primaryColor,
-                      ),
-                      title: Text(
-                        DateTime.now().longMonthName,
-                        style: kDefaultTextStyle,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              verticalSpace(),
-              DateTimeline(),
+              const DateWidgets(),
             ],
           ),
         ),

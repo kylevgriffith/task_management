@@ -16,32 +16,7 @@ const TextStyle kDefaultTextStyleBold = TextStyle(
   fontWeight: FontWeight.bold,
 );
 
-const List<String> longMonthNames = [
-  'January',
-  'February',
-  'March',
-  'April',
-  'May',
-  'June',
-  'July',
-  'August',
-  'September',
-  'October',
-  'November',
-  'December'
-];
-
-const List<String> shortMonthNames = [
-  'Jan',
-  'Feb',
-  'Mar',
-  'Apr',
-  'May',
-  'Jun',
-  'Jul',
-  'Aug',
-  'Sep',
-  'Oct',
-  'Nov',
-  'Dec'
-];
+const TextStyle kSmallDateTextStyle = TextStyle(
+  fontSize: 15.0,
+  fontWeight: FontWeight.bold,
+);
