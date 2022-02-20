@@ -29,7 +29,8 @@ class TimelineController extends GetxController {
   }
 
   RxBool _changeValue(RxBool value) {
-    //
     return value.value ? false.obs : true.obs;
   }
+
+  int get selectedDateIndex => dates.keys.toList().indexOf(_selectedDate.value);
 }
