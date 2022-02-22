@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../helpers/contants.dart';
-import '../../../models/timeline_controller.dart';
+import '../../../../helpers/contants.dart';
+import '../../../../models/timeline_controller.dart';
 import 'date_timeline_box.dart';
 
 class DateTimeline extends StatelessWidget {
