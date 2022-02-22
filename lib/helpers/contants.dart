@@ -21,4 +21,8 @@ const TextStyle kSmallDateTextStyle = TextStyle(
   fontWeight: FontWeight.bold,
 );
 
+const TextStyle kTabsLabelTextStyle = TextStyle(
+  fontSize: 15.0,
+);
+
 const Duration kDefaultDuration = Duration(milliseconds: 800);

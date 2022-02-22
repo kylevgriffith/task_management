@@ -14,17 +14,19 @@ extension DateTimeExtension on DateTime {
   }
 
   String get leftTime {
+    return isToday ? time : dayOfWeek;
+  }
+
+  bool get isToday {
     final now = DateTime.now();
-    final diff = difference(now);
-    final int days = diff.inDays;
-    final int weeks = diff.inDays ~/ 7;
-    final hours = diff.inHours;
-    if (weeks > 0) {
-      return "$weeks weeks";
-    } else if (days > 0) {
-      return "$days days";
-    } else {
-      return "$hours hours";
-    }
+    return now.day == day && now.month == month && now.year == year;
+  }
+
+  String get dayOfWeek {
+    return DateFormat.E().format(this);
+  }
+
+  String get time {
+    return DateFormat.jm().format(this);
   }
 }
