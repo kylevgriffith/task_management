@@ -29,21 +29,21 @@ class MainWidgets extends StatelessWidget {
         children: const [
           TabBar(
             labelColor: Colors.black,
+            unselectedLabelColor: Colors.grey,
             indicatorColor: accentColor,
             padding: EdgeInsets.all(30),
+            labelStyle: kTabsLabelTextStyle,
             tabs: [
               Padding(
                 padding: EdgeInsets.only(bottom: 15),
                 child: Text(
                   'Today\'s Tasks (5)',
-                  style: kTabsLabelTextStyle,
                 ),
               ),
               Padding(
                 padding: EdgeInsets.only(bottom: 15),
                 child: Text(
                   'Completed (2)',
-                  style: kTabsLabelTextStyle,
                 ),
               ),
             ],

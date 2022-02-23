@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:task_management/helpers/contants.dart';
 
-import '../../../../helpers/contants.dart';
 import '../../../../helpers/extensions/date_extension.dart';
 import '../../../../models/task.dart';
 
@@ -29,12 +30,9 @@ Column taskWidget(Task task) {
   return Column(
     children: [
       ListTile(
-        leading: IconButton(
-          onPressed: () {},
-          icon: Icon(
-            Icons.check_circle_outline,
-            color: task.isDone ? primaryColor : Colors.grey,
-          ),
+        leading: GestureDetector(
+          onTap: () {},
+          child: checkIconWidget(task.isDone),
         ),
         title: Text(
           task.title,
@@ -53,5 +51,23 @@ Column taskWidget(Task task) {
         ),
       ),
     ],
+  );
+}
+
+Widget checkIconWidget(bool isDone) {
+  return Container(
+    width: Get.width * 0.1,
+    height: Get.width * 0.1,
+    padding: const EdgeInsets.all(5),
+    decoration: BoxDecoration(
+      shape: BoxShape.circle,
+      color:
+          isDone ? primaryColor.withOpacity(0.2) : Colors.grey.withOpacity(0.2),
+    ),
+    child: SvgPicture.asset(
+      'assets/icons/check.svg',
+      color:
+          isDone ? primaryColor.withOpacity(0.6) : Colors.grey.withOpacity(0.6),
+    ),
   );
 }
