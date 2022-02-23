@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 
 import '../../../../helpers/contants.dart';
 import '../../../../helpers/extensions/date_extension.dart';
@@ -76,7 +75,7 @@ class DateTimelineBox extends StatelessWidget {
         ),
         const SizedBox(height: 8),
         Text(
-          DateFormat.E().format(date).toUpperCase(),
+          date.dayOfWeek,
           style: kSmallDateTextStyle.copyWith(
             color: isSelected ? Colors.white : Colors.black54,
           ),

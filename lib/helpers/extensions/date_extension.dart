@@ -23,7 +23,7 @@ extension DateTimeExtension on DateTime {
   }
 
   String get dayOfWeek {
-    return DateFormat.E().format(this);
+    return DateFormat.E().format(this).toUpperCase();
   }
 
   String get time {
