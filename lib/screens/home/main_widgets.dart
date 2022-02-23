@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:task_management/contollers/task_controller.dart';
+import 'package:task_management/models/task.dart';
 
 import '../../helpers/contants.dart';
 import 'components/tasks/today_tasks.dart';
@@ -25,38 +28,45 @@ class MainWidgets extends StatelessWidget {
   Widget tabs() {
     return DefaultTabController(
       length: 2,
-      child: Column(
-        children: const [
-          TabBar(
-            labelColor: Colors.black,
-            unselectedLabelColor: Colors.grey,
-            indicatorColor: accentColor,
-            padding: EdgeInsets.all(30),
-            labelStyle: kTabsLabelTextStyle,
-            tabs: [
-              Padding(
-                padding: EdgeInsets.only(bottom: 15),
-                child: Text(
-                  'Today\'s Tasks (5)',
-                ),
+      child: GetBuilder<TaskController>(
+        init: TaskController(tasks: RxList(tasksList)),
+        builder: (controller) {
+          return Column(
+            children: [
+              TabBar(
+                labelColor: Colors.black,
+                unselectedLabelColor: Colors.grey,
+                indicatorColor: accentColor,
+                padding: const EdgeInsets.all(30),
+                labelStyle: kTabsLabelTextStyle,
+                tabs: [
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 15),
+                    child: Text(
+                      'Today\'s Tasks (${controller.tasks.length})',
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 15),
+                    child: Text(
+                      'Completed (${controller.completed})',
+                    ),
+                  ),
+                ],
               ),
-              Padding(
-                padding: EdgeInsets.only(bottom: 15),
-                child: Text(
-                  'Completed (2)',
+              Expanded(
+                child: TabBarView(
+                  children: [
+                    TodayTasks(
+                      tasks: controller.tasks,
+                    ),
+                    const SizedBox(),
+                  ],
                 ),
-              ),
+              )
             ],
-          ),
-          Expanded(
-            child: TabBarView(
-              children: [
-                TodayTasks(),
-                TodayTasks(),
-              ],
-            ),
-          )
-        ],
+          );
+        },
       ),
     );
   }
