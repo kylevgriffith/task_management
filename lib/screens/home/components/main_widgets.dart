@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:task_management/contollers/task_controller.dart';
-import 'package:task_management/models/task.dart';
+import '../../../contollers/task_controller.dart';
+import '../../../models/task.dart';
 
-import '../../helpers/contants.dart';
-import 'components/tasks/today_tasks.dart';
+import '../../../helpers/contants.dart';
+import 'tasks/task_list_widget.dart';
 
 class MainWidgets extends StatelessWidget {
   const MainWidgets({Key? key}) : super(key: key);
@@ -12,15 +12,27 @@ class MainWidgets extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: Container(
-        decoration: const BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(kDefaultRadius),
-            topRight: Radius.circular(kDefaultRadius),
+      child: TweenAnimationBuilder(
+        duration: kDefaultDuration,
+        tween: Tween<double>(begin: 0, end: 1),
+        curve: Curves.bounceOut,
+        builder: (context, double value, child) => Transform.translate(
+          offset: Offset(0, (1 - value) * 200),
+          child: Opacity(
+            opacity: value,
+            child: child,
           ),
         ),
-        child: tabs(),
+        child: Container(
+          decoration: const BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(kDefaultRadius),
+              topRight: Radius.circular(kDefaultRadius),
+            ),
+          ),
+          child: tabs(),
+        ),
       ),
     );
   }
@@ -29,7 +41,8 @@ class MainWidgets extends StatelessWidget {
     return DefaultTabController(
       length: 2,
       child: GetBuilder<TaskController>(
-        init: TaskController(tasks: RxList(tasksList)),
+        init: TaskController(
+            tasks: RxList(tasksList), completedTasks: RxList([])),
         builder: (controller) {
           return Column(
             children: [
@@ -43,7 +56,7 @@ class MainWidgets extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(bottom: 15),
                     child: Text(
-                      'Today\'s Tasks (${controller.tasks.length})',
+                      'All Tasks (${controller.tasks.length})',
                     ),
                   ),
                   Padding(
@@ -57,13 +70,11 @@ class MainWidgets extends StatelessWidget {
               Expanded(
                 child: TabBarView(
                   children: [
-                    TodayTasks(
-                      tasks: controller.tasks,
-                    ),
-                    const SizedBox(),
+                    TaskListWidget(tasksList: controller.tasks),
+                    TaskListWidget(tasksList: controller.completedTasks),
                   ],
                 ),
-              )
+              ),
             ],
           );
         },

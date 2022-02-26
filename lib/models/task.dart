@@ -16,11 +16,11 @@ List<Task> tasksList = [
   Task(
       title: 'Meeting with design team',
       date: DateTime.now().add(const Duration(hours: 1)),
-      isDone: RxBool(true)),
+      isDone: RxBool(false)),
   Task(
       title: 'Check the business plan',
       date: DateTime.now().add(const Duration(hours: 2, minutes: 30)),
-      isDone: RxBool(true)),
+      isDone: RxBool(false)),
   Task(
       title: 'Coffee with Nick Rivera',
       date: DateTime.now().add(const Duration(hours: 5, minutes: 30)),
