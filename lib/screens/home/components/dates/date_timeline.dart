@@ -27,42 +27,31 @@ class DateTimeline extends StatelessWidget {
 
     return SizedBox(
       height: Get.height * 0.15,
-      child: TweenAnimationBuilder(
-        duration: kDefaultDuration,
-        tween: Tween<double>(begin: 0, end: 1),
-        curve: Curves.easeIn,
-        builder: (context, double value, child) {
-          return Opacity(
-            opacity: value,
-            child: child,
+      child: ListView.builder(
+        itemCount: daysCount,
+        scrollDirection: Axis.horizontal,
+        controller: _controller,
+        itemBuilder: (context, index) {
+          DateTime date = _getDate(index);
+          bool isSelected = _isAtSameDate(date, selectedDate);
+
+          controller.addDate(date, RxBool(isSelected));
+
+          return Obx(
+            () => DateTimelineBox(
+              date: date,
+              isSelected: controller.dates[date]!.value,
+              onDateSelected: (selectedDate) {
+                if (onDateChange != null) {
+                  onDateChange!(selectedDate);
+                }
+
+                controller.changeSelectedDate(selectedDate);
+                _scrollToDate(controller.selectedDateIndex);
+              },
+            ),
           );
         },
-        child: ListView.builder(
-          itemCount: daysCount,
-          scrollDirection: Axis.horizontal,
-          controller: _controller,
-          itemBuilder: (context, index) {
-            DateTime date = _getDate(index);
-            bool isSelected = _isAtSameDate(date, selectedDate);
-
-            controller.addDate(date, RxBool(isSelected));
-
-            return Obx(
-              () => DateTimelineBox(
-                date: date,
-                isSelected: controller.dates[date]!.value,
-                onDateSelected: (selectedDate) {
-                  if (onDateChange != null) {
-                    onDateChange!(selectedDate);
-                  }
-
-                  controller.changeSelectedDate(selectedDate);
-                  _scrollToDate(controller.selectedDateIndex);
-                },
-              ),
-            );
-          },
-        ),
       ),
     );
   }

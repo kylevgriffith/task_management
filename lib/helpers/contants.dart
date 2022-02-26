@@ -25,4 +25,4 @@ const TextStyle kTabsLabelTextStyle = TextStyle(
   fontSize: 15.0,
 );
 
-const Duration kDefaultDuration = Duration(milliseconds: 800);
+const Duration kDefaultDuration = Duration(seconds: 2);

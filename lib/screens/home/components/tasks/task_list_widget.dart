@@ -7,27 +7,27 @@ import '../../../../helpers/contants.dart';
 import '../../../../helpers/extensions/date_extension.dart';
 import '../../../../models/task.dart';
 
-class TodayTasks extends StatelessWidget {
-  const TodayTasks({required this.tasks, Key? key}) : super(key: key);
-  final List<Task> tasks;
+class TaskListWidget extends StatelessWidget {
+  const TaskListWidget({required this.tasksList, Key? key}) : super(key: key);
+  final List<Task> tasksList;
 
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
-        children: tasksWdiget(),
+        children: taskList(),
       ),
     );
   }
 
-  List<Widget> tasksWdiget() {
+  List<Widget> taskList() {
     return List.generate(
-      tasks.length,
-      (index) => taskWidget(tasks[index]),
+      tasksList.length,
+      (index) => taskWidget(tasksList[index]),
     );
   }
 
-  Column taskWidget(Task task) {
+  Widget taskWidget(Task task) {
     return Column(
       children: [
         ListTile(
@@ -59,7 +59,7 @@ class TodayTasks extends StatelessWidget {
     );
   }
 
-  Widget checkIconWidget(bool isDone) {
+  AnimatedSwitcher checkIconWidget(bool isDone) {
     return AnimatedSwitcher(
       duration: const Duration(milliseconds: 500),
       switchInCurve: Curves.easeInOutBack,
