@@ -4,11 +4,18 @@ import '../models/task.dart';
 
 class TaskController extends GetxController {
   final RxList<Task> tasks;
+  final RxList<Task> completedTasks;
 
-  TaskController({required this.tasks});
+  TaskController({required this.tasks, required this.completedTasks});
 
   void addTask(Task task) {
     tasks.addIf(isValidDate(task.date), task);
+    sortByDate();
+    update();
+  }
+
+  void addCompletedTask(Task task) {
+    completedTasks.add(task);
     update();
   }
 
@@ -18,12 +25,21 @@ class TaskController extends GetxController {
 
   void removeTask(Task task) {
     tasks.remove(task);
+    sortByDate();
+    update();
+  }
+
+  void removeCompletedTask(Task task) {
+    completedTasks.remove(task);
     update();
   }
 
   void toggleTask(Task task) {
     int index = tasks.indexOf(task);
     tasks[index].isDone = RxBool(!tasks[index].isDone.value);
+    tasks[index].isDone.value
+        ? addCompletedTask(task)
+        : removeCompletedTask(task);
     update();
   }
 
@@ -34,6 +50,11 @@ class TaskController extends GetxController {
 
   void clearCompleted() {
     tasks.removeWhere((value) => value.isDone.value);
+    update();
+  }
+
+  void sortByDate() {
+    tasks.sort((a, b) => a.date.compareTo(b.date));
     update();
   }
 
