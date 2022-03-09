@@ -27,7 +27,7 @@ class TaskListWidget extends StatelessWidget {
     );
   }
 
-  Widget taskWidget(Task task) {
+  Column taskWidget(Task task) {
     return Column(
       children: [
         ListTile(
@@ -39,11 +39,19 @@ class TaskListWidget extends StatelessWidget {
               () => checkIconWidget(task.isDone.value),
             ),
           ),
-          title: Text(
-            task.title,
+          title: AnimatedOpacity(
+            duration: const Duration(milliseconds: 600),
+            opacity: task.isDone.value ? 0.2 : 1,
+            child: Text(
+              task.title,
+            ),
           ),
-          subtitle: Text(
-            task.date.leftTime,
+          subtitle: AnimatedOpacity(
+            duration: const Duration(milliseconds: 600),
+            opacity: task.isDone.value ? 0.2 : 1,
+            child: Text(
+              task.date.leftTime,
+            ),
           ),
         ),
         Align(
@@ -59,9 +67,13 @@ class TaskListWidget extends StatelessWidget {
     );
   }
 
+  Tween opacityTween(bool isDone) {
+    return Tween(begin: isDone ? 1 : 0, end: isDone ? 0 : 1);
+  }
+
   AnimatedSwitcher checkIconWidget(bool isDone) {
     return AnimatedSwitcher(
-      duration: const Duration(milliseconds: 500),
+      duration: const Duration(milliseconds: 600),
       switchInCurve: Curves.easeInOutBack,
       transitionBuilder: (child, animation) => ScaleTransition(
         scale: animation,

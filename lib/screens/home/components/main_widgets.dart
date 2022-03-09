@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../contollers/task_controller.dart';
-import '../../../models/task.dart';
 
+import '../../../contollers/task_controller.dart';
 import '../../../helpers/contants.dart';
+import '../../../models/task.dart';
 import 'tasks/task_list_widget.dart';
 
 class MainWidgets extends StatelessWidget {
@@ -31,13 +31,13 @@ class MainWidgets extends StatelessWidget {
               topRight: Radius.circular(kDefaultRadius),
             ),
           ),
-          child: tabs(),
+          child: taskTabs(),
         ),
       ),
     );
   }
 
-  Widget tabs() {
+  DefaultTabController taskTabs() {
     return DefaultTabController(
       length: 2,
       child: GetBuilder<TaskController>(
