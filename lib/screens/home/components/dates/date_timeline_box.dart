@@ -25,8 +25,14 @@ class DateTimelineBox extends StatelessWidget {
         child: Container(
           key: ValueKey(isSelected),
           width: Get.width * 0.16,
+          height: Get.height * 0.15,
           margin: const EdgeInsets.only(right: 15.0),
-          decoration: boxDecoration(),
+          decoration: BoxDecoration(
+            borderRadius:
+                const BorderRadius.all(Radius.circular(kDefaultRadius)),
+            color: isSelected ? primaryColor : Colors.white,
+            boxShadow: boxShadow(isSelected),
+          ),
           child: Padding(
             padding: const EdgeInsets.all(10),
             child: boxDateText(),
@@ -41,19 +47,21 @@ class DateTimelineBox extends StatelessWidget {
     );
   }
 
-  BoxDecoration boxDecoration() {
-    return BoxDecoration(
-      borderRadius: const BorderRadius.all(Radius.circular(kDefaultRadius)),
-      color: isSelected ? primaryColor : Colors.white,
-      boxShadow: [
-        if (isSelected)
-          BoxShadow(
-            color: primaryColor.withOpacity(0.4),
-            offset: const Offset(5, 0),
-            blurRadius: 10,
-          ),
-      ],
-    );
+  List<BoxShadow> boxShadow(bool usePrimaryColor) {
+    return [
+      const BoxShadow(
+        color: Colors.white,
+        offset: Offset(-6.0, -6.0),
+        blurRadius: 16.0,
+      ),
+      BoxShadow(
+        color: usePrimaryColor
+            ? primaryColor.withOpacity(0.4)
+            : Colors.black.withOpacity(0.1),
+        offset: const Offset(6.0, 6.0),
+        blurRadius: 16.0,
+      ),
+    ];
   }
 
   Column boxDateText() {

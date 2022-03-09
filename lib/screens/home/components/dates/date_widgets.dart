@@ -38,7 +38,7 @@ class DateWidgets extends StatelessWidget {
             ),
           ],
         ),
-        SizedBox(height: Get.height * 0.04),
+        SizedBox(height: Get.height * 0.03),
         DateTimeline(
           startDate: DateTime.now(),
           selectedDate: DateTime(

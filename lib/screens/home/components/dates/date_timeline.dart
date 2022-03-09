@@ -26,7 +26,7 @@ class DateTimeline extends StatelessWidget {
         TimelineController(dates: RxMap({}), currentDate: selectedDate));
 
     return SizedBox(
-      height: Get.height * 0.15,
+      height: Get.height * 0.21,
       child: ListView.builder(
         itemCount: daysCount,
         scrollDirection: Axis.horizontal,
