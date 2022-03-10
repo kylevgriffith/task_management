@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'components/main_widgets.dart';
+import 'components/tasks_bottomsheet.dart';
 import 'components/top_widgets.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -22,7 +22,7 @@ class HomeScreen extends StatelessWidget {
           children: [
             const TopWidgets(),
             verticalSpace(),
-            const MainWidgets(),
+            const TasksBottomSheet(),
           ],
         ),
       ),

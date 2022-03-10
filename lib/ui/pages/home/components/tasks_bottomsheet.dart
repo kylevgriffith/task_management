@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../contollers/task_controller.dart';
-import '../../../helpers/contants.dart';
-import '../../../models/task.dart';
+
+import '../../../../core/contollers/task_controller.dart';
+import '../../../../core/models/task.dart';
+import '../../../../utils/contants.dart';
 import 'tasks/task_list_widget.dart';
 
-class MainWidgets extends StatelessWidget {
-  const MainWidgets({Key? key}) : super(key: key);
+class TasksBottomSheet extends StatelessWidget {
+  const TasksBottomSheet({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

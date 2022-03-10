@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
-import '../../../../contollers/task_controller.dart';
-import '../../../../helpers/contants.dart';
-import '../../../../helpers/extensions/date_extension.dart';
-import '../../../../models/task.dart';
+import '../../../../../core/contollers/task_controller.dart';
+import '../../../../../core/models/task.dart';
+import '../../../../../utils/contants.dart';
+import '../../../../../utils/extension.dart';
 
 class TaskListWidget extends StatelessWidget {
   const TaskListWidget({required this.tasksList, Key? key}) : super(key: key);
@@ -65,10 +65,6 @@ class TaskListWidget extends StatelessWidget {
         ),
       ],
     );
-  }
-
-  Tween opacityTween(bool isDone) {
-    return Tween(begin: isDone ? 1 : 0, end: isDone ? 0 : 1);
   }
 
   AnimatedSwitcher checkIconWidget(bool isDone) {

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'helpers/contants.dart';
-import 'screens/home/home_screen.dart';
+import 'ui/pages/home/home_screen.dart';
+import 'utils/contants.dart';
 
 void main() {
   runApp(

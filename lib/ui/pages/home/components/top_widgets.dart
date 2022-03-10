@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../helpers/contants.dart';
-import 'dates/date_widgets.dart';
+import '../../../../utils/contants.dart';
+import 'date-timeline/date_widgets.dart';
 
 class TopWidgets extends StatelessWidget {
   const TopWidgets({Key? key}) : super(key: key);
